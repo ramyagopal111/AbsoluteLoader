@@ -1,0 +1,46 @@
+import java.util.Scanner;
+import java.io.IOException;
+import java.io.*;
+public class AbsoluteLoader {
+	public static void main(String[] args) throws Exception
+	{
+	String[][] pgm= {
+	{"0","L","1","19(0,15)"},
+	{"3","A","1","22(0,15)"},
+	{"9","ST","1","29(0,15)"},
+	{"11","4"},
+	{"14","5"},
+	{"17","-"}
+	};
+
+	int initLoc, addr, i, j;
+	BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+	System.out.println("\nInput program:");
+	for (i=0; i<pgm.length; i++)
+	{
+	for (j=0; j<pgm[i].length; j++)
+	{
+	System.out.println(pgm[i][j]+" ");
+	}
+	System.out.println();
+	}
+	System.out.println("\nenter the initial add:");
+	initLoc=Integer.parseInt(in.readLine());
+	System.out.println("\noutput program:");
+
+	for(i=0;i<pgm.length;i++)
+	{
+		int absLoc=Integer.parseInt(pgm[1][0])+initLoc;
+		System.out.print("\n"+absLoc+" "+pgm[i][1]+" ");
+		if(pgm[i][1].equalsIgnoreCase("L") || pgm[i][1].equalsIgnoreCase("A")|| pgm[i][1].equalsIgnoreCase("ST"))
+		{
+			System.out.print(pgm[i][2] + " ");
+			absLoc=Integer.parseInt(pgm[i][3].substring(0,pgm[i][3].indexOf('(')))+initLoc;
+			System.out.print(absLoc+ pgm[i][3].substring(pgm[i][3].indexOf('(')));
+		}
+	}
+	System.out.println();
+	}
+	}
+
+
